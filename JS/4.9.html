@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //    var name = 'The Window';
+    //    var object = {
+    //     name : 'My Object',
+    //     getName : function () {
+    //         var that = this;
+    //         return function () {
+    //             return that.name;
+    //         }
+    //     }
+    //    }
+    //    alert(object.getName()());
+
+
+    // function a() {
+    //     var arr = [];
+    //     for(var i = 0; i < 10; i ++) {
+    //         arr[i] = function () {
+    //             console.log(i);
+    //         }
+    //     }
+    //     return arr;
+    // }
+    // var demo = a();
+    // for(var j = 0; j < 10; j ++) {
+    //     demo[j]();
+    // }
+
+
+    // function a () {
+    //     var arr = [];
+    //     for(var i = 0; i < 10; i ++) {
+    //         (function (k) {
+    //             arr[k] = function () {
+    //                 console.log(k);
+    //             }
+    //         }(i))
+    //     }
+    //     return arr;
+    // }
+    // var demo = a();
+    // for(var j = 0; j < 10; j ++) {
+    //     demo[j]();
+    // }
+
+
+    
+    var name = 'The Window';
+    var object = {
+        name  : 'My Object',
+        getNameFunc : function(){
+            var that = this;
+            return function(){
+                return that.name;
+            };
+        }
+    };
+    alert(object.getNameFunc()());
+    </script>
+</body>
+</html>

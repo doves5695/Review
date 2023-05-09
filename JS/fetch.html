@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // fetch是XMLHttpRequest的升级版
+        // fetch用promise但是不用回调函数
+        // fetch采用模块化设计， API分散在多个对象上(Response对象, Request对象, Headers对象)
+        // fetch通过数据流处理数据, 可以分块处理,有利于提高网站性能表现,减少内存占用
+
+        // 在用法上,fetch接收一个url字符串作为参数, 默认向该网址发出GET请求, 返回一个Promise对象
+        // fetch(URL)
+        // .then(...)
+        // .catch(...)
+
+        // 假设从服务获取JSON数据
+        // fetch(url)
+        //     .then(response => response.json())
+        //     .then(json => console.log(json))
+        //     .catch(err => console.log('Request Failed', err));
+
+        // 使用async改写promise
+        // async function getJson() {
+        //     let url = '...';
+        //     try {
+        //         let response = await fetch(url);
+        //         return await response.json();
+        //     } catch (error) {
+        //         console.log('Request Failed', error);
+        //     }
+        // }
+       
+
+        // fetch中的Resposne对象, 用来处理HTTP回应
+        // Response 对象的同步属性
+        // fetch请求成功后,得到的是一个Response对象, 它对应服务器的HTTP回应
+        // const response = await fetch(URL);
+        // response.status和response.statusText就是Respone的同步属性可以立刻读取
+
+        // 标头信息属性
+        // Response.ok
+        // Response.ok属性返回一个布尔值，表示请求是否成功，true对应 HTTP 请求的状态码 200 到 299，false对应其他的状态码。
+
+        // Response.status
+        // Response.status属性返回一个数字，表示 HTTP 回应的状态码（例如200，表示成功请求）
+
+        // Response.statusText
+        // Response.statusText属性返回一个字符串，表示 HTTP 回应的状态信息（例如请求成功以后，服务器返回"OK"）。
+
+        // Response.url
+        // Response.url属性返回请求的 URL。如果 URL 存在跳转，该属性返回的是最终 URL。
+
+        // Response.type
+        // Response.type属性返回请求的类型。可能的值如下：
+        // basic：普通请求，即同源请求。
+        // cors：跨域请求。
+        // error：网络错误，主要用于 Service Worker。
+
+        // Response.redirected
+        // Response.redirected属性返回一个布尔值，表示请求是否发生过跳转。
+    </script>
+</body>
+</html>

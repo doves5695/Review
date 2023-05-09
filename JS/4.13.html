@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function mynew() {
+        //     var newobj = {};
+        //     var constructor = Array.prototype.shift.call(arguments);
+        //     newobj.__proto__ = constructor.prototype;
+        //     var returned = constructor.apply(newobj,arguments);
+        //     return typeof returned === 'object' ? returned : newobj;
+        // }
+
+
+        // 用map的时候传的必须是二维数组
+        // var obj = new Map([[{a : 1},'jingrui'],['age',20]]);
+        // console.log(obj)
+
+
+        // size属性可以用来返回map结构的成员总数
+        // set方法设置键名key,键值对应value,然后返回整个map结构,如果key已经有值,则键值会被更新,没有就新创建
+        // set方法是返回map对象,可以采用链式写法
+        // get方法读取key对应的键值,如果找不到key,就返回undefined
+        // has方法返回一个布尔值,表示某个键是否在当前map对象之中
+        // delete方法删除一个键,返回true,如果删除失败就返回false
+        // clear方法清除所有的成员.无返回值
+
+
+        // map中的遍历方法
+        // keys()返回键名
+        // values()返回键值的遍历器
+        // entries() 返回所有成员的遍历器
+        // forEach() 遍历map的所有成员
+
+
+
+
+        var map = new Map([['name','jingrui'],['age','20'],['sex','male']]);
+        console.log(map.size);
+        console.log(map.set('age','21'));
+        console.log(map.get('wife'))
+        console.log(map.has('name'))
+        // console.log(map.clear());
+        console.log(map.keys());
+        console.log(map.values());
+        console.log(map.entries());
+        map.forEach(function (key) {
+            console.log(key);
+        }) 
+    </script>
+</body>
+</html>

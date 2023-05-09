@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log('同步代码1');
+        // setTimeout (() => {
+        //     console.log('setTimeout');
+        // },0)
+        // new Promise((resolve) => {
+        //     console.log('同步代码2');
+        //     resolve()
+        // }).then(() => {
+        //     console.log('promise.then')
+        // })
+        // console.log('同步代码3')
+
+        setTimeout( () => {
+            console.log('定时器开始');
+        });
+        new Promise( function (resolve) {
+            console.log('马上开始执行for循环');
+            for(var i = 0; i < 1000; i++ ) {
+                i == 99 && resolve();
+            }
+        }).then(function () {
+            console.log('执行then函数拉');
+        });
+        console.log('代码执行结束')
+
+        // 代码执行结束
+        // 执行then函数拉
+        // 马上开始执行for循环
+        // 定时器开始
+    </script>
+</body>
+</html>

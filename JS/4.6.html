@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // console.log(typeof(a)); // undefined
+        // console.log(typeof(undefined)) // undefined
+        // console.log(typeof(NaN)) // number
+        // console.log(typeof(null)) // object
+        // var a = '123abc';
+        // console.log(typeof(+a)); // number
+        // console.log(typeof(!!a)) // boolean
+        // console.log(typeof(a + "")); // string
+        // console.log(1 == "1"); // true
+        // console.log(NaN == NaN) // false
+        // console.log(NaN == undefined) // false
+        // console.log("11" + 11) // 1111
+        // console.log(1 === "1") // false
+        // console.log(parseInt("123abc")) // 123
+        // var num = 123123.245789
+        // console.log(num.toFixed(3)); // 123123.246
+        // console.log(typeof(typeof(a))); // string
+        // console.log(typeof 2) // number
+        // console.log(typeof true) // boolean
+        // console.log(typeof 'str') // string
+        // console.log(typeof []) // object
+        // console.log(typeof function () {}) // function
+        // console.log(typeof {}) // object
+        // console.log(typeof undefined) // undefined
+        // console.log(typeof null) // object
+
+
+        // console.log(2 instanceof Number); // false
+        // console.log(true instanceof Boolean) // false
+        // console.log('str' instanceof String) // false
+        // console.log([] instanceof Array); // true
+        // console.log(function () {} instanceof Function) // true
+        // console.log({} instanceof Object) // true
+
+
+        // console.log((2).constructor === Number);  //true
+        // console.log((true).constructor === Boolean) // true
+        // console.log(('str').constructor === String) // true
+        // console.log(([]).constructor === Array) //true
+        // console.log((function () {}).constructor === Function) // true
+        // console.log(({}).constructor === Object) //true
+
+
+
+        // var a = Object.prototype.toString;
+        // console.log(a.call(2)); [object Number]
+        // console.log(a.call(true)) [object Boolean]
+        // console.log(a.call('str')) [object String]
+        // console.log(a.call([])) [object Array]
+        // console.log(a.call(function () {})) [object Function]
+        // console.log(a.call({})) [object Object]
+        // console.log(a.call(undefined)); [object Undefined]
+        // console.log(a.call(null)); [object Null]
+
+
+        // var a = [1,2,3];
+        // console.log(Array.prototype.isPrototypeOf(a))
+
+
+        // console.log(typeof undefined)
+
+
+
+        // 实现 instanceof 
+        // function myInstanceof(left,right) {
+        //     // 获取对象的原型
+        //     var proto = Object.getPrototypeOf(left);
+        //     // 获取构造函数的prototype对象
+        //     var prototype = right.prototype;
+        //     while(true) {
+        //         if(!proto) {
+        //             return false
+        //         }
+        //         if(proto === prototype) {
+        //             return true
+        //         }
+        //         // 如果没找到,就继续从其原型上找，object.getPrototypeof方法用来获取指定对象的原型
+        //         proto = Object.getPrototypeOf(proto)
+        //     }
+        // }
+        // var a = [1,2,3];
+        // console.log(myInstanceof(a,Array))
+
+        
+        // console.log(NaN !== NaN);
+
+
+        console.log(isNaN('NaN'))
+        console.log(Number.isNaN('NaN'));
+    </script> 
+</body>
+</html>

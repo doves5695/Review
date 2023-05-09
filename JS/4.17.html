@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Promise
+
+
+
+
+        // 闭包解决私有化变量
+        // function createCounter() {
+        //     var count = 0;
+        //     function counter() {
+        //         count ++;
+        //         console.log(count);
+        //     }
+        //     return counter;
+        // }
+        // var counter1 = createCounter();
+        // counter1();
+        // counter1();
+        
+        // var counter2 = createCounter();
+        // counter2();
+
+
+        function ajax(options) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(options.method || 'GET', options.url,true);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === 4 && xhr.status === 200) {
+                    options.success(xhr.responseText);
+                } else {
+                    options.fail(xhr.status);
+                }
+            };
+            xhr.send(options.data);
+        }
+        ajax({
+            url : 'http://127.0.0.1:5500/JS/4.17.html',
+            method : 'POST',
+            data : JSON.stringify({id : 123}),
+            success : function (response) {
+                console.log('Data received' , response);
+            },
+            fail : function (status) {
+                console.log('Request failed with status', status);
+            }
+        })
+    </script>
+</body>
+</html>

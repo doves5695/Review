@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.异步编程的实现方法
+        // 一.回调函数
+        // 回调函数的缺点是当多个回调函数嵌套的时候会产生回调地狱,上下两层的回调函数间的代码耦合度太高,不利于维护
+
+        // 二.Promise
+        // 使用Promise的方式可以将嵌套的回调函数作为链式调用,缺点是如果有多个then的链式调用,可能会造成代码的语义不够明确
+
+        // 三.generator
+        // 它可以在函数的执行过程中,将函数的执行权移出,在函数外部的时候还可以吧执行权移回来,当碰见异步执行的时候把执行权移出去,异步执行结束再移回来,所以在generator内部我们可以用同步的顺序来书写
+        // 四.async函数
+        // async函数是generator和promise实现的一个自动执行的语法糖,它的内部自带执行器,当函数内部执行到一个await语句的时候,如果语句返回一个promise对象,那么函数将会等待promise对象的状态变为resolve后再继续向下执行
+
+        // 2.setTimeout, promise, Async/Await的区别
+        // setTimeout在所有东西之后执行
+
+        // promise一旦产生就会立即执行,然后再去执行resolve或reject当中的then或catch, 如下示例所示,如果在then或catch下面还有clg,那么还是先执行clg
+        // console.log('one')
+        // let promise = new Promise((resolve, reject) => {
+        //     console.log('promise1')
+        //     resolve();
+        //     console.log('promise2')
+        //     reject();
+        // })
+        // promise
+        //     .then(()=> {
+        //         console.log('promise3') 
+        //     })
+        //     .catch(()=> {
+        //         console.log('promise4')
+        //     })
+        // setTimeout(() => {
+        //     console.log('settimeout')
+        // })
+        // console.log('666')
+
+        // async, await
+        // async函数返回一个Promise对象, 当函数执行的时候,一旦遇到了await就会先返回, 等到触发的异步操作完成, 再执行函数体后面的语句, 我们可以理解为碰见了await就让出了线程, 跳出了async函数体
+        // await的含义为等待, 也就是async函数需要等待await后的函数执行完成并且有了返回结果(promise对象)之后, 才能继续执行下面的代码, await通过返回一个Promise对象来实现同步的效果
+        // async function async1 () {
+        //     console.log('async1 start');
+        //     await async2();
+        //     console.log('async1 end');
+        // }
+        // async function async2() {
+        //     console.log('async2')
+        // }
+        // console.log('script start');
+        // async1();
+        // console.log('script end')
+
+        // async function async1 () {
+        //     return 1
+        // }
+        // console.log(async1()) // 返回结果是一个Promise对象,所以可以用then处理后续逻辑
+        // async function async1 () {
+        //     await  async2()
+        //     console.log(666)
+        // }
+        // async function async2() {
+        //     return 666
+        // }
+        // async1()
+        // console.log(async2())
+    </script>
+</body>
+</html>

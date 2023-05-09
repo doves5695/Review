@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var script = document.createElement('script');
+        // 在这一步的时候就已经把src引入的文件加载过来了,但是只有你把它插入body当中的时候才会运行
+        // script.src = '4.15.js';
+        // 因为是异步执行所以当你直接写出一个函数的执行的时候,你打印出来的一定是undefined,在上一行代码请求加载4.15.js的时候下面就已经执行完了
+        // mytest();
+        // 这样我们就可以用计时器来让这句话延迟执行,确保前面能够完全加载完毕,这种方法的漏洞就是,如果加载的东西太多我们无法知道延迟的时间
+        // setTimeout(function () {
+        //     mytest();
+        // },3000);
+
+        // script.onload = function () {
+        //     mytest();
+        // }
+
+        // 但是在ie当中我们需要用到状态码,最开始的时候ie的状态码是loading,也就是加载中,它会根据script标签的加载进度来改变状态码
+        // 这是一个监测ie状态码的函数
+        // script.onreadystatechange = function () {
+        //     if(script.readyState = "complete" || script.readyState == 'loaded') {
+        //         mytest();
+        //     } 
+        // }
+
+
+        // 接下来最好的方法就是用一个函数来判断什么时候可以引入js中的代码
+        // function load () {
+        //     if(script.readyState) {
+        //         script.onreadystatechange = function () {
+        //             if(script.readyState == 'complete' || script.readyState == 'loaded') {
+        //                 mytest();
+        //             }
+        //         }
+        //     } else {
+        //         script.onload = function () {
+        //             mytest();
+        //         }
+        //     }
+        // }
+        // load();
+        // document.body.appendChild(script);
+
+
+
+        // 封装一个函数
+        // function loadscript (url,callback) {
+        //     var script = document.createElement('script');
+        //     if(script.readyState) {
+        //         script.onreadystatechange = function () {
+        //             if(script.readyState == 'complete' || script.readyState == 'loaded') {
+        //                 obj[callback]()
+        //                 callback();
+        //             }
+        //         }
+        //     } else {
+        //         script.onload = function () {
+        //             // callback();
+        //             // obj[callback]();
+        //         }
+        //     }
+        //     //如果你网速太好,把script.src = url放在前面,在没运行到后面绑定事件的时候,你已经加载完了,事件无法监听到readyState的改变,因为前面已经加载完了,onload也就不会加载了也就导致没有事件触发,所以把它放后面
+        //     script.src = url;
+        //     document.body.append(script);
+        // }
+        // 传第二个参数的时候要注意,在外面套上一层匿名函数,因为在最开始解析的时候就会把你的函数执行读进去,会报没定义的错,所以我们在外面套一层匿名函数防止被打开
+        // loadscript('4.15.js',function () {mytest()})
+
+        // 还可以用对象传，但是记得是字符串
+        // loadscript('4.15.js',"firstTest");
+
+
+
+        // 类数组
+        // var arraylike = {
+        //     '0' : 'a',
+        //     '1' : 'b',
+        //     '2' : 'c',
+        //     length : 3
+        // }
+        // // var arr = Array.prototype.slice.call(arraylike)
+        // // var arr = Array.prototype.splice.call(arraylike,0);
+        // // var arr = Array.prototype.concat.apply([],arraylike);
+        // var arr = Array.from(arraylike)
+        // console.log(arr);
+        // console.log(Object.prototype.toString.call(arr)) 
+
+
+
+        
+    </script>
+</body>
+</html>

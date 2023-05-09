@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="container">
+        <h1 id="title">我是标题</h1>
+    </div>
+    <script>
+        var containerDom = document.getElementById('container');
+        var spanDom = document.createElement('span');
+        spanDom.innerHTML = '我是span';
+        containerDom.appendChild(spanDom);
+        // JavaScrip为什么要进行变量提升,它导致了什么问题呢
+        // 主要有两个原因
+        // 1. 提高性能
+        // 在js代码执行之前,会进行语法检查和预编译,并且这一操作只进行一次,这么做就是为了提高性能,如果你没有这一步,那么你每次执行代码的时候都需要重新解析一遍该函数,因为你变量的代码是不会改变的,解析一次就足够了
+        // 2.容错性更好
+        // a = 1;
+        // var a;
+        // console.log(a)
+
+
+
+
+        // 什么是尾调用呢?尾调用有什么好处
+        // 尾调用就是在一个函数的最后调用另一个函数.尾调用可以节约内存,因为你在一个函数内部调用一个函数的时候,会保留当前函数的执行上下文,创建一个新的执行上下文加入栈中,如果你是在尾部调用的另一个函数,那么就不用再保留当中的执行上下文了,也就是节省了内存
+        // 但是注意在es6的尾部调用优化只在严格模式下开启,正常模式是无效的
+        function A() {
+            B()
+            var a = 123;
+            var arr = [1];
+            function B() {
+                console.log(666)
+            }
+        }
+        A()
+
+
+        // ES6模块与commonJS模块有什么异同?
+        // CommonJS是对模块的浅拷贝,Es6 Module是对模块的引用,即ES6 Module只存在读,不能改变其值,也就是指针指向不能变,类似const
+        // import的接口是read-only,不能修该其变量值,即不能修该其变量的指针指向,但可以改变变量内部指针指向,可以对commonjs重新赋值(改变指针指向),但是对Es6 Module赋值会编译报错
+        // Es6Module是静态引入,编译时输出接口
+        // CommentJs是动态引入,执行时加载
+        
+        
+        // 常见的dom操作
+
+
+        // 什么是http
+        // HTTP,其实就是个P,为什么这么说呢,因为HTTP的英文是(Hypertext Transfer Protocol) , 其实http就是一个协议,这个协议是干什么的呢,就是用来帮助客户端和服务端通信的,我们可以把客户端比做我,服务端比做你,当我想给你邮包裹的时候,我可以选择使用哪种方式给你邮快递,比如顺丰还是京东(这就好比http当中使用较多的get,和post),那么一个快递包裹都包括什么呢,在快递外面应该是我的快递信息(也就是请求方式),以及你的地址(服务器地址),里面是我要邮给你的东西(也就是我客户端需要的东西)
+        // http大概就分为两部分(header和body) header上面放的就是(请求的服务器地址,请求方式 , body里面放的就是我的资料)
+        
+
+
+        // http状态码
+        // 2XX 表示成功        最常见的是200 请求成功。一般用于GET与POST请求
+        // 3XX 重定向          常见的是304,表示可以使用缓存的内容
+        // 4XX 表示客户端错误   常见的是404(客户端错误),表示被服务器拒绝了或者找不到请求的资源
+        // 5XX 表示服务器错误    常见的是500, 表示服务器内部发生错误或者故障
+    </script>
+</body>
+</html>

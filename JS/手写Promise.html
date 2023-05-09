@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            width: 80px;
+            height: 20px;
+            line-height: 20px;
+        }
+        p {
+            width: 340px;
+            height: 400px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- <input type="text">
+    <button class="button_1st">一级废话</button>
+    <button class="button_2nd">二级废话</button>
+    <p></p> -->
+    <!-- <script>
+        // 先熟悉class
+        // 静态方法用类调用而不是实例, 在子类当中要先super再this
+        const input = document.querySelector('input'),
+              button_1st = document.querySelector('.button_1st'),
+              button_2nd = document.querySelector('.button_2nd'),
+              p = document.querySelector('p');
+        class BullShit {
+            static welcome_tips () {
+                return '你在说废话'
+            }
+            static welcome () {
+                p.innerText = this.welcome_tips();
+            }
+            constructor (text , color) {
+                this.text = text;
+                this.color = color;
+            }
+            show () {
+                p.innerHTML = this.text + input.value;
+                p.style.color = this.color;
+            }
+            set extra (value) {
+                this.value = value;
+                p.innerHTML += this.value;
+            }
+            get extra () {
+                return `这些是废话: ${this.text}, ${this.value}`;
+            }
+        }
+        class Son_of_BullShit extends BullShit {
+            constructor (text, color, fontSize) {
+                super(text, color);
+                this.fontSize = fontSize;
+            }
+            show () {
+                p.innerHTML = this.text + input.value;
+                p.style.color = this.color;
+                p.style.fontSize = this.fontSize;
+            }
+        }
+        button_1st.addEventListener('click', () => {
+            const bullShit = new BullShit('我知道', 'red');
+            bullShit.show();
+            bullShit.extra = '儿';
+            console.log(bullShit.extra);
+        });
+        button_2nd.addEventListener('click', () => {
+            const son_of_BullShit = new Son_of_BullShit('你管我', 'blue', '30px');
+            son_of_BullShit.show();
+        })
+        p.addEventListener('click', () => {
+            BullShit.welcome();
+        })
+    </script> -->
+
+
+    <script>
+        class Commitment {
+            static PENDING = '待定'; static FULFILLED = '成功'; static REJECTED = '拒绝';
+            constructor (func) {
+                this.status = Commitment.PENDING;
+                this.result = null;
+                this.resolveCallbacks = [];
+                this.rejectCallbacks = [];
+                try {
+                    func(this.resolve.bind(this), this.reject.bind(this));
+                } catch (error) {
+                    this.reject(error);
+                }
+            }
+            resolve (result) {
+                setTimeout( () => {
+                    if (this.status === Commitment.PENDING) {
+                        this.status = Commitment.FULFILLED;
+                        this.result = result;
+                        this.resolveCallbacks.forEach( callback => {
+                            callback(result)
+                        });
+                    }
+                })
+            }
+            reject (result) {
+                setTimeout( () => {
+                    if (this.status === Commitment.PENDING) {
+                        this.status = Commitment.REJECTED;
+                        this.result = result;
+                        this.rejectCallbacks.forEach( callback => {
+                            callback(result)
+                        });
+                    }
+                }) 
+            }
+            then(onFULFILLED, onREJECTED) {
+                return new Commitment((resolve, reject) => {
+                    onFULFILLED = typeof onFULFILLED === 'function' ? onFULFILLED : () => {};
+                    onREJECTED = typeof onREJECTED === 'function' ? onREJECTED : () => {};
+                    if(this.status === Commitment.PENDING) {
+                        this.resolveCallbacks.push(onFULFILLED);
+                        this.rejectCallbacks.push(onREJECTED);
+                    }
+                    if(this.status === Commitment.FULFILLED) {
+                        setTimeout(() => {
+                         onFULFILLED(this.result);
+                        });
+                    }
+                    if(this.status === Commitment.REJECTED) {
+                        onREJECTED(this.result);
+                    }
+                })
+            }
+        }
+        let commitment = new Commitment( (resolve, reject) => {
+                resolve(666);
+        });
+        commitment.then(
+            result => {console.log(result)},
+        ).then(
+            result => {console.log(result)},
+        )
+            
+    </script>
+</body>
+</html>

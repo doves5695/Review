@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // for... in 和for...of的区别?
+        // for...of是es6新增的遍历方式
+        // for...of遍历获取的是对象的键值,for...in获取的是对象的键名
+        // for...in会遍历对象的整个原型链,性能非常差不推荐使用,而for...of只遍历当前对象不会遍历原型链
+        // 对于数组的遍历,for...in会返回数组中所有可枚举的属性(包括原型链上可枚举的属性,)for...of只返回数组的下标对应的属性值
+        // 总结 for...in循环主要是为了遍历对象,不合适遍历数组;for...of循环可用来遍历数组,类数组对象,字符串,set,map以及generator对象
+
+
+        // 如何使用for...of循环遍历?
+        // 如果需要遍历的对象是类数组对象,那么用array.from转化成数组就可以了
+        // 如果它只是一个普通的对象,那么需要给对象添加一个[Symbol.iterator]属性,并指向一个迭代器
+        // var obj = {
+        //     0 : 'one',
+        //     1 : 'two',
+        //     2 : 'three',
+        //     length : 3
+        // }
+        // var newobj = Array.from(obj)
+        // for(let a in newobj) {
+        //     console.log(a)
+        // }
+
+        // 切记for...in打印出来的是键名,length也能打印出来,for...of打印的是键值打印不出数组的长度
+
+
+
+        // 数组遍历方法有哪些?
+        // var arr = [100,121,36,49,25,512];
+        // arr.forEach((value,index)=>{
+        //     console.log(value,index)
+        // })
+        // var a = arr.map(Math.sqrt)
+        // var a = arr.filter((value) => {
+        //     return value > 100
+        // })
+        // console.log(a)
+
+        // var arr = ['jing','rui','ni']
+        // for (var res of arr) {
+        //     console.log(res)
+        // }
+
+
+        // var arr = [1,2,3,4,50]
+        // // var res = arr.some((value) => {
+        // //     return value > 2
+        // // })
+        // // var res = arr.findIndex((value) => {
+        // //     return value >4
+        // // })
+        // var res = arr.reduce((total , num) => {
+        //     return total - num
+        // })
+        // console.log(res)
+
+
+        // 综上可知,遍历数组的方式有以下几种
+        // foreach() 数组方法，不改变原数组，没有返回值
+        // map()     数组方法，不改变原数组，有返回值，可链式调用
+        // filter()  数组方法，过滤数组，返回包含符合条件的元素的数组，可链式调用
+        //for...of   不能遍历普通的obj对象,遍历类数组需要把类数组用array.from变成数组
+        //every和some字面意思,every就是数组里面所有都要满足才会返回true,some是有一个就行,就会返回true
+        //find和findIndex数组方法，find()返回的是第一个符合条件的值；findIndex()返回的是第一个返回条件的值的索引值
+        // reduce() 和 reduceRight()  用减法可以看出来效果
+
+
+        // foeEach和map的方法有什么区别
+        // foreach方法没有返回值,不能链式调用,Map有返回值,能链式调用
+
+
+
+        // promise
+
+        // const isSuccess = true
+        // const promise = new Promise((resolve,reject) => {
+        //     if(isSuccess) {
+        //         resolve('成功人士')
+        //     } else {
+        //         reject('失败人士')
+        //     }
+        // })
+        // promise
+        //     .then(name => {
+        //         console.log(`我是${name}`)
+        //     })
+        //     .catch(name => {
+        //         console.log(`我是${name}`)
+        //     })
+
+
+        // function timeout(ms) {
+        //     return new Promise((resolve,reject) => {
+        //         setTimeout(resolve,ms,'done')
+        //     })
+        // }
+        // timeout(1000).then((value) => {
+        //     console.log(value)
+        // })
+
+
+        const isTOSchool = false
+        const p = new Promise((resolve, reject) => {
+            if (isTOSchool) {
+                resolve('from resolve(): promise is okay')
+            } else {
+                reject('from reject(): promise is failed')
+            }
+        })
+        p
+            .then((message) => { console.log(message)})
+            .catch((message) => {console.log(message)})
+    </script>
+</body>
+</html>
