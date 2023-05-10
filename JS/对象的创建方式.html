@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 大概有十种
+        // 一.new object 方法
+        // const obj = new Object ({
+        //     name: 'jr',
+        //     age: 20
+        // })
+
+        // 二.大括号简写
+        // const obj = {
+        //     name: 'jr1',
+        //     age: 20
+        // }
+
+        // 三.工厂函数
+        // function Person (name,age) {
+        //     return {name, age, getInfo: function()  {
+        //         console.log(this.name, this.age);
+        //     }}
+        // }
+        // const person =  Person('jingrui', 20);
+
+        // 四.构造函数
+        //  function Person (name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.sayName = () => {
+        //         console.log(this.name)
+        //     }
+        // }
+        // const p = new Person('jingrui',20);
+
+        // 五. 原型对象方法
+        // function Person () {}
+        // Person.prototype.name = 'jingrui';
+        // Person.prototype.age = 20
+        // Person.prototype.getInfo = function() {console.log(this.name, this.age)};
+        // const me = new Person();
+        // me.name = 'wangba'
+        // me.age = 10000
+
+
+        // 六.混合模式
+        // function Person (name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // Person.prototype.getInfo = function () {console.log(this.name, this.age)}
+        // const p = new Person('w',20)
+
+        
+        // 七.动态混合
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     if (Person.prototype.getInfo === "undefined") {
+        //         Person.prototype.getInfo = function () {
+        //             console.log(this.name, this.age);
+        //         }
+        //     }
+        // }
+        // const p1 = new Person('w', 2);
+        // const p2 = new Person('s', 4);
+
+        
+        // 八.寄生构造函数
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // function Son(name, age, lang) {
+        //     const p = new Person(name, age);
+        //     p.lang = lang;
+        //     return p;
+        // }
+        // const p1 = Son('jingrui', 20, 'js');
+        // const p2 = Son('sss', 22, 'sss');
+
+        
+        // 九.class
+        // class Person {
+        //     constructor(name, age) {
+        //         this.name = name;
+        //         this.age = age;
+        //     }
+        //     getInfo() {
+        //         console.log(this.name, this.age);
+        //     }
+        // }
+        // const p = new Person('xiaoming', 20);
+
+
+        // 闭包
+        // function Person(name, age) {
+        //     return {
+        //         getName() {
+        //             return name;
+        //         },
+        //         setName: function (value) {
+        //             name = value;
+        //         },
+        //         getAge: function() {
+        //             return age
+        //         }
+        //     }
+        // }
+        // const p =  Person('小明',20);
+        // const p1 =  Person('小红', 21);
+        // console.log(p.getName())
+        // console.log(p1.getName())
+
+        // p.setName('小明是小红的哥哥');
+        // console.log(p.getName());
+    </script>
+</body>
+
+</html>

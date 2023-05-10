@@ -63,6 +63,11 @@
 
         // Response.redirected
         // Response.redirected属性返回一个布尔值，表示请求是否发生过跳转。
+
+
+        // fetch 在发出请求之后,只有网络错误或者,无法连接的时候,fetch才会报错,其它情况都不会报错,而是认为请求成功
+        // 这也就是说即使服务器返回的状态码是4xx或5xx,fetch也不会报错(即Promise不会变为rejected状态)
+        // 只有通过response.status属性,得到http回应的真实状态码,才能判断请求成功
     </script>
 </body>
 </html>

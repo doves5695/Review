@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // get和post是http协议当中发送请求的两种方式
+        // GET
+        // get方法请求一个被指定的资源, 使用get只被用于获取数据
+        //POST
+        // POST方法用于将实体提交到指定的资源，通常导致在服务器上的状态变化或副作用
+
+        // get和post的本质都是tcp链接,并无差别
+
+
+        // 区别
+        // GET在浏览器回退时是无害的，而POST会再次提交请求
+        // GET产生的URL地址可以被Bookmark，而POST不可以
+        // GET请求会被浏览器主动cache，而POST不会，除非手动设置
+        // GET请求只能进行url编码，而POST支持多种编码方式
+        // GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留
+        // GET请求在URL中传送的参数是有长度限制的，而POST没有
+        // 对参数的数据类型，GET只接受ASCII字符，而POST没有限制
+        // GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息
+        // GET参数通过URL传递，POST放在Request body中
+
+
+        // 参数位置
+        // 当不携带参数的时候,两者最大的区别就是方法名不同
+        // 当携带参数的时候，get请求是把参数放到url中，post放在body当中
+        // GET的简约报文
+        // GET /index.html ? name=jingrui&age = 20 Http/1.1
+        // Host: localhost
+
+        // POST的简约报文
+        // POST /index.html HTTP/1.1
+        // Host: localhost
+        // Content-type: application/x-www-form-urlencoded
+
+        // name=jingrui&age=20
+
+        // 注意：这里只是约定，并不属于HTTP规范，相反的，我们可以在POST请求中url中写入参数，或者GET请求中的body携带参数
+
+
+        // Ie浏览器对url的长度限制是2083字节(2k+35)
+        // 这里限制的是整个URL长度，而不仅仅是参数值的长度
+
+        // 安全
+        // POST 比 GET 安全，因为数据在地址栏上不可见
+
+        // 然而，从传输的角度来说，他们都是不安全的，因为 HTTP 在网络上是明文传输的，只要在网络节点上捉包，就能完整地获取数据报文
+
+        // 只有使用HTTPS才能加密安全
+
+
+        // 数据包
+        // 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）
+
+        // 对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok
+    </script>
+</body>
+</html>
