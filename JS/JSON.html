@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JSON的键名必须用双引号, JSON没有数据类型NaN, null, infinity和函数, JSON最后一个键名是不能有逗号的, JSON小数点后面必须要数组
+        // json.parse变成JavaScrip对象格式
+        // json.stringify变成json格式
+
+        const xhr = new XMLHttpRequest;
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+                let parseJs = JSON.parse(xhr.responseText);
+                console.log(parseJs);
+                let stringifyJson = JSON.stringify(xhr.responseText);
+                console.log(stringifyJson);
+            }
+        }
+        xhr.open("get", './test.json', true);
+        xhr.send();
+    </script>
+</body>
+</html>

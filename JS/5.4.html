@@ -103,22 +103,22 @@
         //         setTimeout(resolve,ms,'done')
         //     })
         // }
-        // timeout(1000).then((value) => {
+        // timeout(5000).then((value) => {
         //     console.log(value)
         // })
 
 
-        const isTOSchool = false
-        const p = new Promise((resolve, reject) => {
-            if (isTOSchool) {
-                resolve('from resolve(): promise is okay')
-            } else {
-                reject('from reject(): promise is failed')
-            }
-        })
-        p
-            .then((message) => { console.log(message)})
-            .catch((message) => {console.log(message)})
+        // const isTOSchool = false
+        // const p = new Promise((resolve, reject) => {
+        //     if (isTOSchool) {
+        //         resolve('from resolve(): promise is okay')
+        //     } else {
+        //         reject('from reject(): promise is failed')
+        //     }
+        // })
+        // p
+        //     .then((message) => { console.log(message)})
+        //     .catch((message) => {console.log(message)})
     </script>
 </body>
 </html>

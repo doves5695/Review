@@ -34,10 +34,10 @@
         // 练习题:
         // function a() {
         //     function b() {
-        //         console.log(this);// window
+        //         console.log(this); // window // 因为没有人调用
         //         function c() {
         //             "use strict";
-        //             console.log(this) // undefined
+        //             console.log(this) // undefined // 因为严格模式不允许this指向window
         //         }
         //         c();
         //     }
@@ -63,7 +63,7 @@
         //     },
         //     special: special
         // }
-        // girl.detail();// 小红
+        // girl.detail(); // 小红
         // girl.woman.detail(); // 小黄
         // girl.special(); // 小红
 
@@ -89,11 +89,11 @@
         // }
         // var c = b.detail;
         // b.a = a;
-        // var e = b.bibi();
+        // var e = b.bibi(); 
         // a(); // red
         // c(); // red
         // b.a(); // yellow
-        // d(b.detail);// red
+        // d(b.detail); // red
         // e(); // red
 
 
