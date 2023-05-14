@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        section {
+            width: 100%;
+            height: 110vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #18423c;
+        }
+        section:nth-child(2) {
+            background-color: #1a5f55;
+        }
+        section:nth-child(3) {
+            background-color: #184227;
+        }
+        img {
+            width: 35vw;
+            height: 35vh;
+            opacity: .7;
+        }
+        .text {
+            position: absolute;
+            font-size: 72px;
+            padding: 0 200px;
+            color: #fff;
+            text-align: center;
+        }
+        .shape {
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            width: 300px;
+            height: 200px;
+            background-color: #000;
+            opacity: .3;
+        }
+        section:nth-child(3) .shape {
+            left: inherit;
+            right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <section class="selector">
+        <img class="lax lax_preset_blurInOut:180.5:20 lax_preset_slideY:722:95 lax_preset_slideX:722:95"  src="R (6).jpg">
+        <div class="text" >
+            <h1 class="lax lax_preset_scaleInOut:158:0.5 lax_preset_fadeInOut:159:0">Welcome you coming</h1>
+        </div>
+        <div class="shape lax lax_preset_jiggle:150:31 lax_preset_spin:722:360"></div>
+    </section>
+    
+    <section>
+        <img class="lax lax_preset_fadeInOut:159:0 lax_preset_scaleOut:158:1 lax_preset_zigzag:163:150" src="R (2).jpg">
+        <div class="text">
+            <h1 class="lax lax_preset_scaleOut:165.5:0.5 lax_preset_fadeOut:180.5:0.8">Welcome you coming</h1>
+        </div>
+        <div class="shape lax lax lax_preset_slideX:180.5:4 lax_preset_spin:350:360 lax_preset_fadeInOut:180.5:0"></div>
+    </section>
+    
+    <section>
+        <img class="lax lax_preset_blurOur:180.5:20 lax_preset_zigzag:170:200" src="R (3).jpg">
+        <div class="text">
+            <h1 class="lax lax_preset_blurOur:180.5:20 lax_preset_zigzag:170:200 lax_preset_jiggle:50:20">Welcome you coming</h1>
+        </div>
+        <div class="shape"></div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/lax.js" ></script>
+    <script>
+         window.onload = function () {
+            lax.init()
+
+            // Add a driver that we use to control our animations
+            lax.addDriver('scrollY', function () {
+                return window.scrollY
+            })
+
+            // Add animation bindings to elements
+            lax.addElements('.selector', {
+                scrollY: {
+                    translateX: [
+                        ["elInY", "elCenter", "elOutY"],
+                        [0, 'screenWidth/10', 'screenWidth'],
+                    ]
+                }
+            })
+        }
+    </script>
+</body>
+</html>
