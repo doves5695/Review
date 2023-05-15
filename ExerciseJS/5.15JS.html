@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.根据下面的es6构造函数书写方式,写出es5的
+
+        // 题:=====================================================
+        // class Example {
+        //     constructor (name) {
+        //         this.name = name;
+        //     }
+        //     init () {
+        //         const fun = () => { console.log(this.name) }
+        //         fun();
+        //     }
+        // }
+        // const e = new Example('Hello');
+        // e.init();
+
+        // 答:=====================================================
+        // function Example(name) {
+        //     'use strict';
+        //     if(!new.target) {
+        //         throw new TypeError('class constructor cannot be invoked without new');
+        //     }
+        //     this.name = name;
+        // }
+        // Object.defineProperty(Example.prototype, 'init', {
+        //     enumerable: false,
+        //     value: function () {
+        //         'use strict';
+        //         if(new.target) {
+        //             throw new TypeError('init is not a constructor');
+        //         }
+        //         var fun = function () {
+        //             console.log(this.name);   
+        //         }
+        //         fun.call(this);
+        //     }
+        // })
+        // 解析:=====================================================
+        // 我们可以知道es6当中的class必须通过new来调用,不能当做普通函数进行调用, 否则报错,所以我们加入了new.target来判断调用方式
+        // es6的class是在严格模式下的,所以在构造函数和原型方法中都使用了严格模式
+        // es6中的原型方法不可以被枚举
+        // 原型方法不允许被new调用
+
+
+
+        // 2.数组去重有哪些方法?
+        // 答:======================================================
+        // const arr = [1,2,3,4,1,2,5];
+        // unique(arr);
+        // 数字或字符串去重, 效率高
+        // function unique(arr) {
+        //     var result = {}; // 定义一个空对象, 利用对象属性名的唯一性来保证不重复
+        //     for(var i = 0; i < arr.length; i++) {
+        //         if(!result[arr[i]]) {
+        //             result[arr[i]] = true;
+        //         }
+        //     }
+        //     console.log(Object.keys(result)); // 获取对象所有属性名的数组
+        // }
+
+        // ===========================================================
+        // 任意数组去重， 适配范围广， 效率低
+        // function unique(arr) {
+        //     var result = [];
+        //     for(var i = 0; i < arr.length; i ++) {
+        //         // 检测数组里面有没有arr【i】, 没有值为false,!false = true, 然后把没有的加入数组
+        //         if(!result.includes(arr[i])) {
+        //             result.push(arr[i]);
+        //         }
+        //     }
+        //     console.log(result);
+        // }
+
+        // ============================================================
+        // 利用es6的set去重, 适配范围广, 效率一般, 书写简单
+        // function unique(arr) {
+        //     console.log([...new Set(arr)]);
+        // }
+
+
+
+
+        // 3.描述下面代码的运行结果
+        // 题:========================================================
+        // foo (typeof a );
+        // function foo(p) {
+        //     console.log(this); // this 指向全局window
+        //     console.log(p); // 因为穿进来的参数typeof a 是未定义的, 所以是undefined
+        //     console.log(typeof b); // 因为let声明关键字没有变量提升, let是有一个暂时性死区,没声明之前不用使用
+        //     let b = 0;
+        // }
+        // 答: =======================================================
+        // 报错，报错的位置在 console.log(typeof b);
+        // 报错原因：ReferenceError: Cannot access 'b' before initialization(初始化)
+        // 这道题考查的是 ES6 新增的声明变量关键字 let 以及暂时性死区的知识。let 和以前的 var 关键字不一样，无法在 let 声明变量之前访问到该变量，所以在 typeof b 的地方就会报错。
+
+
+
+        // 4.描述下列代码的执行结果
+        // 题:==========================================================
+        // class Foo {
+        //     constructor(arr) {
+        //         this.arr = arr;
+        //     }
+        //     bar(n) {
+        //         return this.arr.slice(0,n);
+        //     }
+        // }
+        // var f = new Foo([0,1,2,3]);
+        // console.log(f.bar(1)); // [0] // slice (0,1) 第二个参数表示的是删到谁之前
+        // console.log(f.bar(2).splice(1,1)); // f.bar = [0,1] [0,1].splice(1,1) splice是删掉谁就返回谁
+        // console.log(f.arr); // [0,1,2,3];
+
+
+
+        // 5.描述下列代码的执行结果
+        // 题:===========================================================
+        // function f(count) {
+        //     console.log(`foo${count}`);
+        //     setTimeout(()=> {console.log(`bar${count}`); });
+        // }
+        // f(1);
+        // f(2);
+        // setTimeout(()=>{f(3); });
+        // 答:===========================================================
+        // foo1, foo2, bar1, bar2, foo3, bar3
+        // 调用f1的时候,会执行同步代码, 打印出foo1, 然后执行settimeout,被放入异步执行队列, 接下来调用f2,打印出foo2, 后面的settimeout又被放入异步执行队列, 然后执行最后一个settimeout,又被放入异步执行队列, 至此,同步代码全部执行完, 异步队列当中是谁先被放入谁就先执行,所以是先bar1,然后再bar2, 最后一个settimeout就是先执行同步,再异步
+
+
+
+        // 6.描述下列代码的执行结果
+        // 题:===========================================================
+        // var a = 2;
+        // var b = 5;
+        // console.log(a === 2 || 1 && b === 3 || 4);
+        // 答:===========================================================
+        // true
+        // 考察的是逻辑运算符。在 || 里面，只要有一个为真，后面的直接短路，都不用去计算。所以 a === 2 得到 true 之后直接短路了，返回 true。
+
+
+        // 7.描述下列代码的执行结果
+        // 题:===========================================================
+        // export class ButtonWrapper {
+        //     constructor (domBtnEl, hash) {
+        //         this.domBtnEl = domBtnEl;
+        //         this.hash = hash;
+        //         this.bindEvent();
+        //     }
+        //     bindEvent() {
+        //         this.domBtnEl.addEventListener('click', this.clickEvent, false);
+        //     }
+        //     detachEvent() {
+        //         this.domBtnEl.removeEventListener('click', this.clickEvent);
+        //     }
+        //     clickEvent() {
+        //         console.log(`The hash of the button is: ${this.hash}`);
+        //     }
+        // }
+        // 答:===========================================================
+        // 以上代码导出了一个ButtonWrapper类, 该类在被实例化的时候, 实例化对象上有两个属性, 分别是domBtnEl, hash, domBtnEL是一个DOM节点, 之后为这个DomBtnEl绑定了事件, 点击之后打印出The hash of the button is: hash,  detachEvent是移除点击事件, 当实例化对象调用该方法的时候,该事件就被移除了
+
+
+        
+        // 8.箭头函数有哪些特点
+        // 1.更简洁的语法: 当形参只有一个的时候就不需要用括号括起来, 如果函数体只有一行就不用放到一个块中, 如果函数体当中只有return这一个语句, 就不用使用return关键字
+        // 2.箭头函数没有自己的this, arguements, super
+        // 3.箭头函数的this只会从自己的作用域链的上一层继承this
+
+
+        // 9. new 操作符都做了哪些事？
+        // new运算符创建了一个用户定义的对象类型的实例或具有构造函数的内置对象的实例
+        // 1.创建了一个简单的空对象， 即{};
+        // 2.链接该对象到另一个对象(及设置该对象的原型对象)
+        // 3.将第一步创建的对象作为this的上下文
+        // 4.如果该函数没有返回对象,那么就返回this
+        // function mynew () {
+        //     var obj = {};
+        //     var constructor = Array.prototype.shift.call(arguments);
+        //     obj.__proto__ = constructor.prototype;
+        //     var returned = constructor.apply(obj, arguments);
+        //     return typeof returned === 'object' ? returned :  obj;
+        // }
+
+    
+        
+        // 10.说一说类的继承
+        // 继承是面向对象编程的三大特性之一(封装, 多态, 继承)
+        // 最需要掌握的是伪经典继承和圣杯模式继承
+        // 伪经典继承: 综合了原型链和盗用构造函数的方法, 将两者优点集中了起来,弥补了原型链和盗用构造函数方法的各自不足
+        // 但是伪经典继承(组合继承),最大的问题就是效率问题, 因为父类的构造函数始终会被调用两次: 一次是在创建子类原型时调用, 另一次是在子类构造函数中调用
+        // 圣杯模式就解决了这一问题, 其基本思路就是不通过父类构造函数来给子类原型赋值, 而是取得父类原型的一个副本, 然后将返回的新对象赋值给子类原型
+
+        // 组合继承
+        // // 基类
+        // var Person = function (name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // Person.prototype.test = 'this is a test';
+        // Person.prototype.testFunc = function () {
+        //     console.log('this is a testFunc');
+        // }
+        // // 子类
+        // var Student = function (name, age, gender, score) {
+        //     Person.apply(this, [name, age]); // 盗用构造函数
+        //     this.gender = gender;
+        //     this.score = score;
+        // }
+        // Student.prototype = new Person(); // 改变student 构造函数的原型对象
+        // Student.prototype.testStuFunc = function () {
+        //     console.log('this is a testStuFunc');
+        // }
+        // // 测试
+        // var zhangsan = new Student('张三', 20, '男',100);
+        // console.log(zhangsan.name);
+        // console.log(zhangsan.age);
+        // console.log(zhangsan.gender);
+        // console.log(zhangsan.score);
+        // console.log(zhangsan.test);
+        // zhangsan.testStuFunc();
+        // zhangsan.testFunc();
+
+        // 在上面的例子当中, 我们使用组合继承实现了继承, 都得到了很好的实现
+        // 但是存在效率问题, 我们其实调用了两次Person, 一组在原型上, 一组在实例上, 当我们执行 Student.prototype = new Person( ) 的时候，我们是想要 Person 原型上面的方法，属性是不需要的，因为属性之后可以通过 Person.apply(this, [name, age])  拿到，但是当你 new Person( )  的时候，会实例化一个 Person 对象出来，这个对象上面，属性和方法都有
+
+
+        // 圣杯模式
+        // // target 是子类, origin 是基类
+        // // target ---> Student, origin ---> Person
+        // function inherit(target, origin) {
+        //     function F() {}; // 没有任何多余的属性
+
+        //     // origin.prototype === Person, origin.prototype.constructor === Person 构造函数
+        //     F.prototype = origin.prototype;
+
+        //     // 假设new F() 出来的对象叫小f
+        //     // 那么这个f的原型对象 === F.prototype  === Person.prototype
+        //     // 那么f.constructot === Person.prototype.constructor === Person 的构造函数
+        //     target.prototype = new F();
+
+        //     // 而 f 这个对象又是target 对象的原型对象
+        //     // 这意味着 target.prototype.constructor === f.constructor
+        //     // 所以target的constructor会指向Person构造函数
+
+        //     // 我们要让子类的constructor 重新指向自己
+        //     // 若不修改则会发现constructor 指向的是父类的构造函数
+        //     target.prototype.constructor = target;
+        // }
+
+        // // 基类
+        // var Person = function (name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // Person.prototype.test = 'this is a test';
+        // Person.prototype.testFunc = function () {
+        //     console.log('this is a testFunc');
+        // }
+        // // 子类
+        // var Student = function (name, age, gender, score) {
+        //     Person.apply(this,[name, age]);
+        //     this.gender = gender;
+        //     this.score = score;
+        // }
+        // inherit(Student, Person);
+        // Student.prototype.testStuFunc = function () {
+        //     console.log('this is a testStuFunc');
+        // }
+        // // 测试
+        // var zhangsan = new Student('张三', 20, '男', 100);
+        // console.log(zhangsan.name);
+        // console.log(zhangsan.age);
+        // console.log(zhangsan.gender);
+        // console.log(zhangsan.score);
+        // console.log(zhangsan.test);
+        // zhangsan.testStuFunc();
+        // zhangsan.testFunc();
+    </script>
+</body>
+</html>
