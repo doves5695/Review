@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 11.call、apply、bind 的区别 ？
+        // bind 和 call/apply 有一个很重要的区别，一个函数被 call/apply 的时候，会直接调用，但是 bind 会创建一个新函数。当这个新函数被调用时，bind( )  的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数
+
+
+
+
+        // 12.事件循环机制（宏任务、微任务）
+        // 13.你了解 node 中的事件循环机制吗？node11 版本以后有什么改变
+        // 14.函数柯里化
+        // 柯里化（currying）又称部分求值。一个柯里化的函数首先会接受一些参数，接受了这些参数之后，该函数并不会立即求值，而是继续返回另外一个函数，刚才传入的参数在函数形成的闭包中被保存起来。待到函数被真正需要求值的时候，之前传入的所有参数都会被一次性用于求值
+
+
+
+        // 15.promise.all 方法的使用场景？数组中必须每一项都是 promise 对象吗？不是 promise 对象会如何处理 ？
+        // 16.this 的指向哪几种 ？
+        // 17.JS 中继承实现的几种方式
+        // 18.什么是事件监听
+        // 19.什么是 js 的闭包？有什么作用？
+        // 20.事件委托以及冒泡原理
+
+
+        // 函数柯里化解决事件监听兼容性问题
+        // const whichEvent = (function () {
+        //     if(window.addEventListener) {
+        //         return function (element, type, listener, useCapture) {
+        //             element.addEventListener(type, function (e) {
+        //                 // 规避this指向问题  
+        //                 listener.call(element, e);
+        //             },useCapture);
+        //         }
+        //     } else if (window.attachEvent) {
+        //         return function (element, type, handler) {
+        //             element.attachEvent('on'+type, function (e) {
+        //                 handler.call(element, e);
+        //             });
+        //         }
+        //     }
+        // }) ();
+
+        // 柯里化主要体现在于函数里面返回函数
+
+        // function add () {
+        //     let args = Array.prototype.slice.call(arguments);
+        //     let inner = function () {
+        //         args.push(...arguments);
+        //         return inner;
+        //     }
+        //     inner.toString = function () {
+        //         return args.reduce( function (prev, cur) {
+        //             return prev + cur
+        //         });
+        //     } 
+        //     return inner;
+        // }
+        // const result = add(1)(2)(3)(4);
+        // console.log(result);
+    </script>
+</body>
+</html>

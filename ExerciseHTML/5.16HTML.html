@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 11. label的作用是什么？是怎么用的？
+        // label元素不会向用户呈现任何特殊效果，但是，它为鼠标用户改进了可用性，当我们在label元素内点击文本时就会触发此控件。也就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。最常用label的地方就是表单中的性别单选框了，当点击文字时也能够自动聚焦绑定的表单控件
+
+
+
+        // 12. 对于Web标准以及W3C的理解
+        // Web标准简单来说可以分为结构、表现、行为。其中结构是由HTML各种标签组成，简单来说就是body里面写入标签是为了页面的结构。表现指的是CSS层叠样式表，通过CSS可以让我们的页面结构标签更具美感。行为指的是页面和用户具有一定的交互，这部分主要由JS组成
+
+        // W3C，全称：world wide web consortium是一个制定各种标准的非盈利性组织，也叫万维网联盟，标准包括HTML、CSS、ECMAScript等等，web标准的制定有很多好处，比如说
+        // 可以统一开发流程，统一使用标准化开发工具（VSCode、WebStorm、Sublime），方便多人协作
+        // 学习成本降低，只需要学习标准就行，否则就要学习各个浏览器厂商标准
+        // 跨平台，方便迁移都不同设备
+        // 降低代码维护成本
+
+
+        
+        // 13.Quirks（怪癖）模式是什么？它和Standards（标准）有什么区别？
+        // 页面如果写了DTD，就意味着这个页面采用对CSS支持更好的布局，而如果没有，则采用兼容之前的布局方式，这就是Quirks模式，有时候也叫怪癖模式、诡异模式、怪异模式
+
+        // 区别：总体会有布局、样式解析、脚本执行三个方面区别
+
+        // 盒模型：在W3C标准中，如果设置一个元素的宽度和高度，指的是元素内容的宽度和高度，然而在Quirks模式下，IE的宽度和高度还包含了padding和border
+
+        // 设置行内元素的高宽：在Standards模式下，给行内元素设置width和height都不会生效，而在Quriks模式下会生效
+
+        // 用margin：0 auto设置水平居中:在Standards模式下，设置margin：0 auto；可以使元素水平居中，但是在Quriks模式下失效
+
+        // 设置百分比高度:在Standards模式下，元素的高度是由包含的内容决定的，如果父元素没有设置百分比的高度，子元素设置百分比的高度是无效的
+
+
+
+        // 14. 知道什么是微格式吗？谈谈理解，在前端构建中应该考虑微格式吗？
+        // 所谓的微格式是建立在已有的、被广泛采用的标准基础之上的一组简单的、开放的数据格式
+
+        // 具体表现是把语义嵌入到HTML中，以便有助于分离式开发，并通过制定一些简单的约定，来兼顾HTML文档的人机可读性，相当于对web网页进行语义注解。
+
+        // 采用微格式的web页面，在HTML文档中给一些标签增加一些属性，这些属性对信息的语义结构进行注解，有助于处理HTML文档的软件，更好的理解HTML文档。当爬取web内容时，能够更为准确地识别内容块的语义，微格式可以对网站进行SEO优化
+
+
+
+        // 15.HTML5为什么只需要写<!DOCTYPE html>?
+        // 其实主要是因为HTML5不基于SGML，所以不需要引用DTD。在HTML4中，<!DOCTYPE>声明引用DTD，因为HTML4基于SGML。DTD规定了标记语言的规则，这样浏览器才能正确的呈现内容。\
+
+
+
+        // 16.HTML5新增了哪些新特性？移除了哪些元素？
+        // HTML5主要是关于图像、位置、存储、多任务等功能的增加：
+        // 语义化标签，如：article、footer、header、nav等
+        // 视频video、音频audio
+        // 画布canvas
+        // 表单控件，calemdar、date、time、email
+        // 地理
+        // 本地离线存储，localStorage长期存储数据，浏览器关闭后数据不丢失，sessionStorage的数据在浏览器关闭后自动删除
+        // 拖拽释放
+
+        // 移除的元素
+        // 纯表现的元素：basefont、font、s、strike、tt、u、big、center
+        // 对可选用性产生负面影响的元素：frame、frameset、noframes
+
+
+
+        // 17. 怎么处理HTML5新标签兼容问题=？
+        // 主要有两种方式：
+        // 实现标签被识别：通过document.createElement(tagName)方法可以让浏览器识别新的标签，浏览器支持新标签后。还可以为新标签添加CSS样式
+        // 用JavaScript解决：使用HTML5的shim框架，在head标签中调用以下代码： <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"
+
+
+
+        // 18.如何实现在一张图片上的某个区域做到点击事件
+        // 我们可以通过图片热区技术：
+        // 插入一张图片，并设置好图像的有关参数，在<img>标记中设置参数usemap="#Map"，以表示对图像地图的引用
+        // 用<map>标记设定图像地图的作用区域，并取名：Map；
+        // 分别用<area>标记针对相应位置互粉出多个矩形作用区域，并设定好链接参数href
+
+
+
+        // 19.a元素除了用于导航外，还有什么作用？
+        // href属性中的url可以是浏览器支持的任何协议，所以a标签可以用来手机拨号<a href="tel:110">110</a>，也可以用来发送短信<a href="sms:110">110</a>，还有邮件等等
+        // 当然，a元素最常见的就是用来做锚点和 下载文件。
+        // 锚点可以在点击时快速定位到一个页面的某个位置，而下载的原理在于a标签所对应的资源浏览器无法解析，于是浏览器会选择将其下载下来。
+
+
+
+        // 20.你知道SEO中的TKD吗?
+        // 在SEO中，TDK其实就是title、description、keywords这三个标签，title表示标题标签，description是描述标签，keywords是关键词标签
+
+    </script>
+</body>
+</html>

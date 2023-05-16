@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 6.分析比较 opacity: 0、visibility: hidden、display: none 优劣和适用场景
+        // 结构： display:none: 会让元素完全从渲染树中消失，渲染的时候不占据任何空间, 不能点击， 
+        // visibility: hidden:不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，不能点击 
+        // opacity: 0: 不会让元素从渲染树消失，渲染元素继续占据空间，只是内容不可见，可以点击
+
+        // 继承： display: none和opacity: 0：是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示。 visibility: hidden：是继承属性，子孙节点消失由于继承了hidden，通过设置visibility: visible;可以让子孙节点显式
+
+        // 性能： displaynone : 修改元素会造成文档回流,读屏器不会读取display: none元素内容，性能消耗较大 visibility:hidden: 修改元素只会造成本元素的重绘,性能消耗较少读屏器读取visibility: hidden元素内容 opacity: 0 ： 修改元素会造成重绘，性能消耗较少
+
+
+
+
+
+        // 7.如何用 css 或 js 实现多行文本溢出省略效果，考虑兼容性
+        // CSS 实现方式
+        // 单行：
+                // overflow: hidden;
+                // text-overflow:ellipsis;
+                // white-space: nowrap;
+        // 多行；
+                // display: -webkit-box;
+                // -webkit-box-orient: vertical;
+                // -webkit-line-clamp: 3; //行数
+                // overflow: hidden;
+        // 兼容:
+        // p{position: relative; line-height: 20px; max-height: 40px;overflow: hidden;}
+        // p::after{content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
+        // background: -webkit-linear-gradient(left, transparent, #fff 55%);
+        // background: -o-linear-gradient(right, transparent, #fff 55%);
+        // background: -moz-linear-gradient(right, transparent, #fff 55%);
+        // background: linear-gradient(to right, transparent, #fff 55%);
+        // }
+
+        // JS 实现方式：
+            // 使用split + 正则表达式将单词与单个文字切割出来存入words
+            // 加上 '...'
+            // 判断scrollHeight与clientHeight，超出的话就从words中pop一个出来
+
+
+
+
+        // 8. 居中为什么要使用 transform（为什么不使用 marginLeft/Top）（阿里）
+        // transform 属于合成属性（composite property），对合成属性进行 transition/animation 动画将会创建一个合成层（composite layer），这使得被动画元素在一个独立的层中进行动画。通常情况下，浏览器会将一个层的内容先绘制进一个位图中，然后再作为纹理（texture）上传到 GPU，只要该层的内容不发生改变，就没必要进行重绘（repaint），浏览器会通过重新复合（recomposite）来形成一个新的帧。
+
+        // top/left属于布局属性，该属性的变化会导致重排（reflow/relayout），所谓重排即指对这些节点以及受这些节点影响的其它节点，进行CSS计算->布局->重绘过程，浏览器需要为整个层进行重绘并重新上传到 GPU，造成了极大的性能开销。
+
+
+        // 9.介绍下粘性布局（sticky）（网易）
+        // position 中的 sticky 值是 CSS3 新增的，设置了 sticky 值后，在屏幕范围（viewport）时该元素的位置并不受到定位影响（设置是top、left等属性无效），当该元素的位置将要移出偏移范围时，定位又会变成fixed，根据设置的left、top等属性成固定位置的效果。
+
+        // sticky 属性值有以下几个特点：
+        // 该元素并不脱离文档流，仍然保留元素原本在文档流中的位置。
+        // 当元素在容器中被滚动超过指定的偏移值时，元素在容器内固定在指定位置。亦即如果你设置了top: 50px，那么在sticky元素到达距离相对定位的元素顶部50px的位置时固定，不再向上移动。
+        // 元素固定的相对偏移是相对于离它最近的具有滚动框的祖先元素，如果祖先元素都不可以滚动，那么是相对于viewport来计算元素的偏移量
+
+
+        // 10.说出 space-between 和 space-around 的区别？（携程）
+        // 这个是 flex 布局的内容，其实就是一个边距的区别，按水平布局来说，space-between是两端对齐，在左右两侧没有边距，而space-around是每个 子项目左右方向的 margin 相等，所以两个item中间的间距会比较大。
+    </script>
+</body>
+</html>
