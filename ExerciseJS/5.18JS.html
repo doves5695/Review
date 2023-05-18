@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 31. defer 与 async 的区别
+
+
+
+        // 32. 浏览器事件循环和任务队列
+
+
+
+        // 33. 原型与原型链 （美团 19年）
+
+
+
+        // 34. 作用域与作用域链 （美团 19年）
+
+
+
+        // 35. 闭包及应用场景以及闭包缺点 （美团 19年）
+
+
+
+        // 36. 原始值与引用值 （美团 19年）
+
+
+
+
+        // 37. 描述下列代码的执行结果
+        const first = () => (new Promise((resolve, reject) => {
+            console.log(3);  
+            let p = new Promise((resolve, reject) => {
+                console.log(7); 
+                setTimeout(() => {
+                    console.log(1); 
+                },0);
+                setTimeout(() => {
+                    console.log(2);
+                    resolve(3)
+                },0)
+                resolve(4);
+            });
+            resolve(2);
+            p.then((arg) => {
+                console.log(arg, 5); 
+            });
+            setTimeout(() => {
+                console.log(6) 
+            },0);
+        }))
+        first().then((arg) => {
+            console.log(arg, 7);  
+            setTimeout(() => {
+                console.log(8); 
+            },0);
+        })
+        setTimeout(() => {
+            console.log(9);  
+        },0);
+        console.log(10);  
+
+
+
+        // 38. 如何判断数组或对象（美团 19年）
+
+
+        
+        // 39. 对象深拷贝与浅拷贝，单独问了 Object.assign（美团 19年）
+
+
+
+        // 40. 说说 instanceof 原理，并回答下面的题目（美团 19年）
+        // function A() {}
+        // function B() {}
+        // A.prototype = new B();
+        // let a = new A();
+        // console.log(a instanceof B);  //true
+    </script>
+</body>
+</html>
