@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +12,7 @@
             height: 100px;
             background-color: blue;
         }
+
         div {
             width: 100px;
             height: 500px;
@@ -18,6 +20,7 @@
         }
     </style>
 </head>
+
 <body>
     <a href="">获取news信息</a>
     <div></div>
@@ -26,23 +29,23 @@
         const divDom = document.getElementsByTagName('div')[0];
 
         // Promise封装ajax
-        function ajaxPromise (method, url, flag, data) {
-            let promise = new Promise( (resolve,reject) => {
+        function ajaxPromise(method, url, flag, data) {
+            let promise = new Promise((resolve, reject) => {
                 let xhr = new XMLHttpRequest();
-                if(method === 'post') {
-                    xhr.open('post',url,flag);
-                    xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+                if (method === 'post') {
+                    xhr.open('post', url, flag);
+                    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
                     xhr.send(data)
                 } else if (method === 'get') {
-                    xhr.open('get',url,flag);
+                    xhr.open('get', url, flag);
                     xhr.send(data);
                 }
                 xhr.onreadystatechange = () => {
-                    if(xhr.readyState === 4) {
-                        if(xhr.status === 200) {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
                             resolve(xhr.responseText)
                         } else {
-                            reject( new Error(xhr.statusText))
+                            reject(new Error(xhr.statusText))
                         }
                     }
                 }
@@ -59,8 +62,8 @@
         //         })
         // }
 
-        
-        
+
+
         // 终版
         // function ajaxPromise(method, url, flag, data) {
         //     let promise = new Promise((resolve, reject) => {
@@ -93,36 +96,6 @@
         // }
 
 
-        // 封装ajax
-        function Ajax (method, url, flag, data, callBack) {
-            var myajax = null;
-            if(window.XMLHttpRequest) {
-                //谷歌,火狐
-                myajax = new window.XMLHttpRequest();
-            } else {
-                //IE
-                myajax = new window.ActiveXObject('Microsoft.XMLHTTP');
-            }
-            //判断大写还是小写,转化成大写
-            method = method.toUpperCase;
-            if (method === 'POST') {
-                myajax.open('POST',url,flag);
-                myajax.setRequestHeader('content-type','application/x-www-form-urlencoded');
-                myajax.send(data);
-            } else if (method === 'GET') {
-                myajax.open('GET',url + '?' + data, flag);
-                myajax.send(data);
-            }
-            myajax.onreadystatechange = function () {
-                if(myajax.readyState === 4) {
-                    if(myajax.status === 200) {
-                        callBack(myajax.responseText);
-                    } else {
-                        alert('error');
-                    }
-                }
-            }
-        }
     </script>
 </body>
 </html>
