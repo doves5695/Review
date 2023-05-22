@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 43. 内存泄漏（美团 19 年）
+        // 44. ES6 新增哪些东西？让你自己说（美团 19 年）
+        // 45. weakmap、weakset（美团 19 年）
+        // 46. 为什么 ES6 会新增 Promise（美团 19年）
+        // 47. ES5 实现继承？（虾皮）
+        // 48. 科里化？（搜狗）
+        // 49. 防抖和节流？（虾皮）
+        // 50. 排序算法---（时间复杂度、空间复杂度）
+        // 51. 浏览器事件循环和 node 事件循环（搜狗）
+        // 52. 闭包、作用域（可以扩充到作用域链）
+
+
+        // Set
+
+        // let myArr = [11,23,44,6,23,44];
+        // let mySet = new Set(myArr);
+        // // mySet.add({a:1, b:2}) // add方法当中可以加入不同的数据类型
+        // // mySet.delete(11);
+        // mySet.add({a: 1, b: 2});
+        // mySet.add('100');
+        // mySet.add([100,200]);
+        // console.log(mySet)
+        // // mySet.forEach( val => console.log(val))
+
+
+
+        // Map
+        // let myMap = new Map([['a1','hello'],['b2','goodbye']]);
+        // myMap.set('c3','jr');
+        // myMap.delete('c3');
+        // myMap.forEach( (val,index) => console.log(val, index))
+        // console.log(myMap);
+
+
+
+        // weakSet 
+        // let carWeakSet = new WeakSet();
+
+        // let car1 = {
+        //     make: 'Honda',
+        //     model: 'Civic'
+        // }
+
+        // carWeakSet.add(car1);
+
+        // let car2 = {
+        //     make: 'Toyota',
+        //     model: 'Camry'
+        // }
+
+        // carWeakSet.add(car2);
+
+        // console.log(carWeakSet);
+
+
+
+        // WeakMap
+        // let carWeakMap = new WeakMap();
+
+        // let k1 = {
+        //     id: 1
+        // }
+
+        // let car1 = {
+        //     make: 'Honda',
+        //     model: 'Civic'
+        // }
+
+        // carWeakMap.set(k1, car1);
+
+        // let k2 = {
+        //     id: 2
+        // }
+
+        // let car2 = {
+        //     make: 'Toyota',
+        //     model: 'Camry'
+        // }
+
+        // carWeakMap.set(k2, car2);
+
+
+        // console.log(carWeakMap);
+    </script>
+</body>
+</html>

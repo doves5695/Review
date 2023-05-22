@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        button {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button>点击防抖</button>
+    </div>
+
+    <script>
+        const buttonDom = document.getElementsByTagName('button')[0];
+
+        function fangDou () {
+            console.log('防抖')
+        }
+
+        function debounce (func, delay) {
+            let timer;
+            return function () {
+                let content = this;
+                let arg = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    func.apply(content, arg);
+                },delay)
+            }
+        }
+        buttonDom.addEventListener('click',debounce(fangDou,1000));
+
+        
+    </script>
+</body>
+</html>
