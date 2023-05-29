@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 我们可以把深浅拷贝中的浅拷贝当做开通银行卡副卡, 深拷贝当做把工资卡给了别人
+
+        // 例子
+        // let video = 100;
+        // let videoCopy = video
+        // videoCopy = 1000;
+        // console.log('video:' + video)
+        // console.log('videoCopy:' + videoCopy)
+
+
+        // 这种是深拷贝, 因为是对象类型吗, 是引用数据类型, 引用数据类型在栈中存放一个指针, 指向自己在堆中的数据存储, 当我们改变对象的属性, 也就是改变了堆中的地址, 所以会一起发生改变
+        // let video = { like : 100 }
+        // let videoCopy = video
+        // videoCopy.like = 10000;
+        
+        // console.log('video:' + video.like)
+        // console.log('videoCopy:' + videoCopy.like)
+    </script>
+</body>
+</html>

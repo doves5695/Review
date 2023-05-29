@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 53.Promise
+
+
+
+
+        // 54.实现一个函数,对一个url进行请求,失败就再次请求,超过最大次数就走失败回调,任何一次成功都走成功回调
+
+        /**
+           @params url: 请求接口地址;
+           @params body: 设置的请求体;
+           @params succ: 请求成功后的回调
+           @params error: 请求失败后的回调
+           @params maxCount: 设置请求的数量
+        */
+        // function request (url, body, succ, error, maxCount = 5) {
+        //     return fetch(url, body)
+        //             .then(res => succ(res))
+        //             .catch(err => {
+        //                 if (maxCount <= 0)
+        //                 return error('请求超时');
+        //                 return request(url, body, succ, error, --maxCount);
+        //             });
+        // }
+
+        // request('http://localhost:8081', {method: 'GET', headers: {}}, 
+        //     (res) => {
+        //         console.log(res.data);
+        //     },
+        //     (err) => {
+        //         console.log(err);
+        //     })
+        
+
+
+        // 55.数组降维
+            // 我们可以通过使es6新增的flat来完成数组降维操作, 使用flat方法会接收一个参数, 这个参数是数值类型, 可以扁平数组的深度
+
+            // var newArr = arr.flat([depth])  // 其中depth是要提取嵌套数组结构的深度, 默认值是1 
+
+            // var arr = [1,2,3,[4,5,[6,7]]];
+            // console.log(arr.flat())
+            // console.log(arr.flat(2))
+
+            // 使用flat(Infinity), 可以打开任意深度的嵌套数组
+            // var arr = [1,2,[3,[4,[5,6]],[7],8,[9,[10]]]];
+            // console.log(arr.flat(Infinity))
+            
+
+            // 数组里面如果有空项,那么会将空项移除
+            // var arr = [1,2,,3];
+            // console.log(arr.flat())
+
+            // var arr = [1,,3,,4,,5]
+            // console.log(arr.flat())
+
+
+
+
+
+        // 56. promise 代码题
+            // new Promise((reslove, reject) => {
+            //     reject(1);
+            //     console.log(2);
+            //     reslove(3);
+            //     console.log(4);
+            // }).then((res) => { console.log(res) })
+            //     .catch(res => { console.log('reject1') })
+            // try {
+            //     new Promise((reslove, reject) => {
+            //         throw 'error'
+            //     }).then((res) => { console.log(res) })
+            //         .catch( res => { console.log('reject2') })
+            // } catch (err) {
+            //     console.log(err)
+            // }
+
+
+
+
+
+        // 57. proxy 是实现代理，可以改变 js 底层的实现方式, 然后说了一下和 Object.defineProperty 的区别
+
+
+
+        // 58. 使用 ES5 与 ES6 分别实现继承
+
+
+
+        // 59.深拷贝
+
+
+
+        // 60.async 与 await 的作用
+
+
+
+        // 61.数据的基础类型（原始类型）有哪些
+
+
+
+        // 62.typeof null 返回结果
+
+
+
+        // 63.对变量进行类型判断的方式有哪些
+
+
+
+        // 64. typeof 与 instanceof 的区别？ instanceof 是如何实现？
+
+
+        
+        // 65.引用类型有哪些，有什么特点
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
