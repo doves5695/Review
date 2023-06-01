@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 86. JS 模块化
+        // 87. 手写 reduce flat
+
+        // reduce实现
+        // Array.prototype.myReduce = function (callback, initialValue) {
+        //     if (!Array.isArray(this) || !this.length || typeof callback !== 'function') {
+        //         return []
+        //     } else {
+        //         let hasInitialValue = initialValue !== undefined;
+        //         let value = hasInitialValue ? initialValue : this[0];
+        //         for (let index = hasInitialValue ? 0 : 1; index < this.length; index++) {
+        //             const element = this[index];
+        //             value = callback(value, element, index, this)
+        //         }
+        //         return value
+        //     }
+        // }
+
+        // let arr = [1,2,3,4];
+
+        // var sum = arr.myReduce( (prev, cur, i) => {
+        //     console.log(prev, cur, i)
+        //     return prev + cur
+        // }, 10)
+        // console.log(sum)
+
+       
+
+            // flat实现
+            // const checkType = (arr) => {
+            //     return Object.prototype.toString.call(arr).slice(8, -1)
+            // }
+            // Array.prototype.myFlat = function (num) {
+            //     let type = checkType(this)
+            //     let result = [];
+            //     if (!Object.is(type, 'Array')) {
+            //         return;
+            //     }
+            //     this.forEach((item) => {
+            //         let cellType = checkType(item)
+            //         if (Object.is(cellType, 'Array')) {
+            //             num--
+            //             if (num < 0) {
+            //                 let newarr = result.push(item)
+            //                 return newarr
+            //             }
+            //             result.push(...item.myFlat(num));
+            //         } else {
+            //             result.push(item)
+            //         }
+            //     })
+            //     return result
+            // }
+
+
+
+        // 88.== 隐试转换的原理？是怎么转换的
+        // 89.['1', '2', '3'].map(parseInt) 结果是什么，为什么 （字节）
+            // [1,NaN,NaN]
+
+        // 90.setTimeout、Promise、Async/Await 的区别（字节）
+
+           
+
+
+
+
+
+
+        // call
+        // Function.prototype.mycall = function (obj) {
+        //     var obj = obj || window;
+        //     obj.fn = this;
+        //     let args = [];
+        //     for (var i = 1; i < arguments.length; i ++) {
+        //         args.push('arguments[' + i + ']');
+        //     }
+        //     var result = eval('obj.fn(' + args + ')');
+        //     delete obj.fn;
+        //     return result
+        // }
+
+        // apply
+        // Function.prototype.myapply = function (obj, arr) {
+        //     var obj = obj || window;
+        //     obj.fn = this
+        //     let args = [];
+        //     if (!arr) {
+        //         obj.fn();
+        //     } 
+        //     for (var i = 0; i < arr.length; i ++) {
+        //         args.push('arr[' + i + ']');
+        //     }
+        //     var result = eval('obj.fn(' + args + ')');
+        //     delete obj.fn;
+        //     return result;
+        // }
+        // var foo = { value: 2 }
+        // function bar (name, age) {
+        //     console.log(this.value)
+        //     console.log(name)
+        //     console.log(age)
+        // }
+        // bar.mycall(foo, 'jr', 20);
+        // bar.myapply(foo, ['jr', 20]);
+
+
+
+        // 节流函数
+        // function jieliu () {
+        //     console.log('防抖')
+        // }
+        // function debounce(func, delay) {
+        //     let timer = null;
+        //     return function () {
+        //         let content = this;
+        //         timer = setTimeout(() => {
+        //             func.apply(this, arguments)
+        //         }, delay)
+        //     }
+        // }
+
+
+
+        // 节流
+        // function throttle (func, delay) {
+        //     let timer = null;
+        //     return function () {
+        //         if (timer) {
+        //             return
+        //         }
+        //         let content = this;
+        //         timer = setTimeout(()=>{
+        //             func.apply(this, arguments)
+        //             timer = null
+        //         },delay)
+        //     }
+        // }
+
+
+        // var arr = [1,2,3,4,4,5,5,6];
+        // var set = new Set(arr)
+        // set.add({name: 'jingrui'})
+        // console.log(set)
+        // set.forEach(val => {
+        //     console.log(val)
+        // })
+
+        // var weakset = new WeakSet()
+        // let obj = {
+        //     name: 'jingrui',
+        //     age: 20
+        // }
+        // let arr = [1,2]
+        // let func = function() {}
+        // let num = 1
+        // weakset.add(obj)
+        // weakset.add(arr)
+        // weakset.add(func)
+        // console.log(weakset)
+
+
+
+        // var obj = {
+        //     val: 'k2'
+        // }
+        // var map = new Map([['k1', 'jingrui'],['k2','hello']])
+        // map.set('c3', 'hhh')
+        // map.delete('c3')
+        // map.forEach((val, index) => {
+        //     console.log(val, index);
+        // })
+        // console.log(map)
+
+
+
+        // let myweakmap = new WeakMap()
+        // let k1 = {
+        //     index: 'key1'
+        // }
+        // let k2 = {
+        //     index: 'key2'
+        // }
+        // // let value1 = ['jingrui']
+        // let value1 = {
+        //     name: 'jingrui'
+        // }
+        // let value2 = ['ahaah']
+        // myweakmap.set(k1, value1)
+        // console.log(myweakmap)
+    </script>
+</body>
+</html>
