@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // call
+        // Function.prototype.mycall = function (obj) {
+        //     var obj = obj || window;
+        //     obj.fn = this;
+        //     let args = [];
+        //     for (var i = 1; i < arguments.length; i ++) {
+        //         args.push('arguments[' + i + ']');
+        //     }
+        //     var result = eval('obj.fn(' + args + ')');
+        //     delete obj.fn;
+        //     return result;
+        // }
+
+        // apply 
+        // Function.prototype.myapply = function (obj, arr) {
+        //     var obj = obj || window;
+        //     obj.fn = this;
+        //     let args = []
+        //     if (!arr) {
+        //         obj.fn
+        //     }
+        //     for (var i = 0; i < arr.length; i ++) {
+        //         args.push('arr[' + i + ']');
+        //     }
+        //     var result = eval('obj.fn(' + args + ')');
+        //     return result;
+        // }
+
+
+        // function Person (name) {
+        //     this.name = name
+        // }
+        // var p = new Person();
+        // Person.mycall(p, 'jingrui');
+        // Person.myapply(p, ['jingrui'])
+
+
+        // 防抖
+        // function fangdou () {
+        //     console.log('防抖')
+        // } 
+        // function debounce (func, delay) {
+        //     let timer = null
+        //     return function () {
+        //         let content = this
+        //         clearTimeout(timer)
+        //         timer = setTimeout (() => {
+        //             func.appply(content,arguments)
+        //         }, delay)
+        //     }
+        // }
+
+
+        // 节流
+        // function jieliu (func, delay) {
+        //     let timer = null;
+        //     return function () {
+        //         let content = this
+        //         if (timer) {
+        //             return
+        //         }
+        //         timer = setTimeout (() => {
+        //             func.apply(content, arguments)
+        //             timer = null
+        //         } ,delay)
+        //     }
+        // }
+
+
+        // set
+        // var arr = new Set([11,11,22,33,44,44,55]);
+        // arr.add({name: 'nihao'})
+        // arr.delete({name: 'nihao'})
+        // arr.add([66]);
+        // console.log(arr);
+        // arr.forEach( val => {
+        //     console.log(val)
+        // })
+
+
+        // Map
+        // var map = new Map([['a1', 'val1'],['a2', 'val2']]);
+        // map.set('c3', 'val3')
+        // // map.delete('c3')
+        // map.set('d4', 'val4');
+        // map.forEach((val, index)=> {
+        //     console.log(val+ ',' + index);
+        // })
+        // console.log(map)
+
+
+        // weakMap        // weakmap键必须是对象形式, 数组和函数也算对象, 可以链式调用
+        // let k1 = {
+        //     keys: 'id1'
+        // }
+        // k1 = function () {}
+        // k1 = [1,2,3]
+        // let obj1 = {
+        //     vals: 'val1'
+        // }
+        // let k2 = {
+        //     keys: 'id2'
+        // }
+        // let obj2 = {
+        //     varls: 'val2'
+        // }
+        
+        // var weakmap = new WeakMap()
+        // weakmap.set(k1, obj1).set(k2, obj2)
+        // // weakmap.set(k2, obj2)
+        // console.log(weakmap)
+
+
+        // WeakSet
+
+        // var weakset = new WeakSet();
+
+        // var val1 = [1,2,3,4];
+        // var val2 = function () {console.log(666)};
+        // weakset.add(val1).add(val2)
+        // console.log(weakset)
+
+
+
+
+
+        // 91.Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？（字节）
+        // promise是同步的, then方法是异步队列当中的微任务
+
+
+
+
+        // 92.情人节福利题，如何实现一个 new （字节）
+        // function mynew () {
+        //     var obj = {}
+        //     var constructor = Array.prototype.shift.call(arguments)
+        //     obj.__proto__ = constructor.prototype;
+        //     var result = constructor.apply(obj,arguments);
+        //     return typeof result === 'object' ? result : obj;
+        // }
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // var person = mynew(Person, 'jingrui', 20);
+
+
+
+            // 实现new的新版本
+
+
+
+
+        // 93.实现一个 sleep 函数（字节）
+            // setTimeout( () => {
+            //     alert('hello')
+            // }, 3000) 
+            // 我们可以借用promise封装, 把settimeout封装成一个返回promise的sleep函数
+            // function sleep (time) {
+            //     return new Promise( (reslove) => setTimeout(reslove, time));
+            // }
+            // sleep(5000)
+            //     .then(() => {
+            //         alert('world')
+            //      })
+
+
+            // 还可以用new.Date()
+            // function sleep(delay) {
+            //     var start = new Date().getTime();
+            //     while (new Date().getTime() - start < delay) {
+            //         continue;
+            //     }
+            // }
+            // function test() {
+            //     console.log('111');
+            //     sleep(2000);
+            //     console.log('222');
+            // }
+            // test();
+
+
+
+        // 94.使用 sort() 对数组 [3, 15, 8, 29, 102, 22] 进行排序，输出结果 （字节）
+            //    console.log( [3,15,8,29,102,22].sort( (a,b) => {
+            //         return b - a 
+            //     }))
+            // var arr = [2,5,1,77,55,6434,4323,2322];
+            // var result = arr.sort((a,b) => {
+            //     return a - b;
+            // })
+            // console.log(result)
+
+
+
+
+
+        // 95.实现 5.add(3).sub(2) (百度)
+                // 实现5+3-2
+                // Number.prototype.add = function (number) {
+                //     if (typeof number !== 'number') {
+                //         throw new Error ('请输入数字')
+                //     }
+                //     return this.valueOf() + number
+                // };
+                // Number.prototype.sub = function (number) {
+                //     if (typeof number !== 'number') {
+                //         throw new Error ('请输入数字')
+                //     }
+                //     return this.valueOf() - number
+                // }
+                // console.log((8).add(2).sub(5))
+
+
+
+        // 96.给定两个数组，求交集
+
+
+
+
+        // 97.为什么普通 for 循环的性能远远高于 forEach 的性能，请解释其中的原因。
+            // let arrs = new Array(10000000);
+            // console.time('for');
+            // for (let i = 0; i < arrs.length; i ++) {}
+            // console.timeEnd('for');
+            // console.time('foreach');
+            // arrs.forEach(()=> {})
+            // console.timeEnd('foreach')
+  
+
+
+        // 98.实现一个字符串匹配算法，从长度为 n 的字符串 S 中，查找是否存在字符串 T，T 的长度是 m，若存在返回所在位置
+
+
+
+        // 99.使用 JavaScript Proxy 实现简单的数据绑定
+
+
+
+
+        // 100 数组里面有 10 万个数据，取第一个元素和第 10 万个元素的时间相差多少（字节）
+    </script>
+</body>
+</html>

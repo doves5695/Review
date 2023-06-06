@@ -116,14 +116,15 @@
 
 
 
-        // 节流函数
-        // function jieliu () {
+        // 防抖函数
+        // function fangdou () {
         //     console.log('防抖')
         // }
         // function debounce(func, delay) {
         //     let timer = null;
         //     return function () {
         //         let content = this;
+        //         clearTimeout(timer)
         //         timer = setTimeout(() => {
         //             func.apply(this, arguments)
         //         }, delay)
@@ -141,7 +142,7 @@
         //         }
         //         let content = this;
         //         timer = setTimeout(()=>{
-        //             func.apply(this, arguments)
+        //             func.apply(content, arguments)
         //             timer = null
         //         },delay)
         //     }
