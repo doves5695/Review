@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap {
+            display: flex;
+            width: 400px;
+            height: 300px;
+            background-color: darkorange;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul {
+            width: 300px;
+            height: 200px;
+        }
+
+        li {
+            width: 200px;
+            height: 60;
+            margin: 10px 0;
+            background-color: green;
+        }
+
+        span {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<div id="wrap">
+    wrap
+    <ul>
+        <li>li1</li>
+        <li>li2</li>
+        <li id="li3">li3<span>span</span></li>
+    </ul>
+</div>
+
+<body>
+    <script>
+        // document.querySelector('.wrap').addEventListener('click', () => {
+        //     console.log('wrap')
+        // }, true)
+        // document.querySelector('ul').addEventListener('click', () => {
+        //     console.log('ul')
+        // }, true)
+        // document.getElementById('li3').addEventListener('click', () => {
+        //     console.log('li')
+        // }, true)
+        // document.querySelector('span').addEventListener('click', () => {
+        //     console.log('span')
+        // }, true)
+
+
+        document.getElementById('wrap').addEventListener('click', (e) => {
+            var target = e.target;
+            if (target.nodeName.toLocaleLowerCase() === 'li') {
+                console.log(target.innerHTML)
+            }
+        })
+    </script>
+</body>
+
+</html>
