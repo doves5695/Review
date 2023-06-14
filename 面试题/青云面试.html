@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 5个Aiax同时发起请求，全部返回展示结果，并且至多允许两次失败，如何实现这种需求?
+
+        // 用来记录错误次数
+        let errorCount = 0;
+        let promise = new Promise( (reslove, reject) => {
+            if (ajaxSucess) {
+                reslove(res.data)
+            } else {
+                errorCount++
+                if (errorCount > 2) {
+                    // 失败次数大于2了
+                    reject(error)
+                } else {
+                    reslove(res.data)
+                }
+            }
+        })
+        Promise.all([promise]).then(val => {
+            console.log(v)
+        })
+
+
+        // 基于浏览器内置存储设计一个5M的缓存系统，并且实现缓存淘汰机制
+        // 设置缓存项
+        function setCacheItem(key, value) {
+            // 检查是否超过给定的内存
+            if (getSize() + JSON.stringify(value).length > 5 * 1024 * 1024) {
+                // 执行缓存淘汰
+                performCacheEviction();
+            }
+            // 设置缓存项
+            localStorage.setItem(key, JSON.stringify(value));
+
+            // 获取缓存项
+            function getCacheItem(key) {
+                const value = localStorage.getItem(key);
+                return value ? JSON.parse(value) : null;
+            }
+
+            // 移除缓存项
+            function removeCacheItem(key) {
+                localStorage.removeItem(key);
+            }
+
+            // 获取当前缓存大小
+            function getSize() {
+                let size = 0;
+                for(let i = 0; i < localStorage.length; i ++) {
+                    const key = localStorage.key(i);
+                    const value = localStorage.getItem(key);
+                    size += key.length + value.length;
+                }
+                return size
+            }
+
+            // 执行缓存淘汰
+            function performCacheEviction() {
+                for(let i = 0; i < localStorage.lengthl; i ++) {
+                    const key = localStorage.key(i);
+                    const value = localStorage.getItem(key);
+                    localStorage.removeItem(key);
+                    if (getSize() <= 5 * 1024 * 1024) {
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        // ReactHooks的基本原理和优缺点都有哪些?有哪些坑需要特别注意?
+        我们可以通过把ReactHooks和传统的React.Component进行对比来得出优缺点
+        优点: 它的状态管理更加清晰, 生命周期淡化, 组件树层变浅, 不用再去考虑this的指向问题, 更容易的复用代码, 代码量变少
+        缺点: hooks不擅长异步的代码, customHooks有时严重依赖参数的不可变性, 它的状态不同步, useEffect不好用, 依赖参数不好写, 很容易出错
+        注意: 我们需要注意不要在循环, 条件语句或嵌套函数中使用, 不要在自定义Hook中使用条件语句来执行不同的逻辑, 它并不适用于所有场景
+
+
+
+
+
+        // 从URL输入到浏览器后，浏览器是如何把具体页面渲染呈现在客户面前的?整个数据通信流程是怎样的?
+        在url输入到浏览器后, 执行以下步骤
+        1.DNS解析, 将地址转化为ip地址(我们平常输入的域名都是英文, 是为了方便记忆, 但是执行时候需要把url转换成计算机认识的ip地址, 都是由数字组成的)
+        2.TCP连接(也就是我们所说的三次握手[客户端和服务器的握手])
+        3.客户端发送HTTP请求
+        4.服务器返回刚才请求的响应报文
+        5.浏览器渲染页面
+        ------------------------------------------------------------
+        那么浏览器是如何渲染页面的呢
+        浏览器首先解析响应的HTML, CSS, JavaSript,等文件, 解析HTML构建Dom树, 解析Css构建CSSom(CSS对象模型), 执行JavaScript代码, 然后将Dom和Cssom结合生成渲染树(Render Tree),
+        然后浏览器根据渲染树, 进行布局和绘制, 最后呈现页面
+        6.TCP断开连接(四次挥手)
+        -------------------------------------------------------------
+        整个数据通信流程如下:
+        用户输入URL->URL解析->DNS解析->建立TCP连接->发起HTTP请求->服务器处理请求->根据处理请求的结构服务器发送响应->客户端接收响应->客户端解析和渲染-> 呈现页面
+
+
+
+
+        // Web安全防护有哪些是需要注意的?怎样避免网站漏洞?
+        1.对于用户的输入数据要进行验证和过滤, 防止恶意输入或注入攻击
+        2.跨站脚本攻击(XSS)防护, 对应用户输入的数据要在展示之前进行适当的编码和转义, 防止恶意脚本在浏览器中执行
+        3.跨站请求伪造(CSRF)防护, 使用CSRF令牌验证请求的合法性, 确保请求是用户发出的
+        4.强化身份验证和授权, 适当授权机制对敏感资源的访问
+        5.安全的会话管理, 生成随机且复杂的会话ID, 确定会话数据不会被破解,伪造, 并设置合理的会话过期时间
+        6.防止SQL注入攻击, 使用参数化查询或预编译语句, 防止恶意输入或注入攻击
+        7.安全的文件上传和下载, 对于用户上传的文件, 进行严格的处理和验证
+        8.安全的配置管理, 确保服务器和应用程序的安全配置, 关闭不必要的服务和功能,以及设置适当的访问权限
+        9.定期更新安全补丁
+        10.日志和监控, 记录关键操作和安全事件的日志, 并进行实时监控
+        11.教育和培训, 提高开发人员和用户的安全意识
+
+
+
+
+
+
+        // CA证书是如何签发的?CA证书避免哪些问题?
+        CA(Certificate Authority) 证书的签发过程
+        1.申请证书
+        2.身份验证
+        3.公钥生成和证书签名
+        4.证书发布
+        5.证书验证
+        CA证书避免哪些问题?
+        1.身份验证和信任建立
+        2.数据加密和完整性
+        3.防止中间人攻击
+        4.提供数字身份标识
+
+
+
+
+
+        // https访问如何优化访问效率?
+        1.使用合适的加密套件
+        2.使用HTTP/2或更高版本
+        3.资源缓存和缓存控制
+        4.优化证书配置
+        5.资源合并和压缩
+        6.图片优化
+        7.负载均衡和CDN
+        8.前端性能优化
+        9.HTTP持久连接
+        10网络优化
+
+
+
+
+
+
+        // CSS媒体查询功能是什么?为什么要使用媒体查询功能?这个功能有什么缺点?
+        CSS媒体查询功能是CSS3引入的一种功能,它允许根据设备的特性和视口的特征来应用不同的样式规则. 通过使用媒体查询,可以根据设备的屏幕宽度, 高度, 方向, 分辨率等条件来为不同的设备提供不同的样式和布局
+        使用媒体查询功能的主要原因是响应式设计, 在现代Web开发中, 我们经常需要创建适应不同设备和屏幕尺寸的网站和应用程序. 媒体查询功能可以让我们根据不同设备的特征提供定制的样式和布局, 从而使网站或应用程序在不同设备上获得更好的用户体验
+        缺点: 
+            复杂: 媒体查询的语法相对复杂, 特别是在处理多个媒体查询条件时, 可能需要编写较长和复杂的CSS规则
+            兼容: 某些旧版本的浏览器可能不支持某些媒体查询特性, 需要提供替代的解决方案或回退样式
+            额外的样式表: 如果使用大量的媒体查询条件来适应各种设备和屏幕尺寸, 可能需要编写多个样式表, 增加了代码的复杂性和维护的难度
+
+
+
+        // 什么是WordPress模板系统?WordPress整体架构是什么样子的?如何根据设计稿修改WordPress相关页面?
+        WordPress模版系统是指用于创建和管理WordPress网站外观和布局的机制, 它基于模版文件和主题概念, 使用户能够根据自己的需求自定义网站的外观和功能
+
+        WordPress整体架构由以下几个主要组成部分组成
+
+        1.核心(Core), 2.主题(Themes) 3.插件(Plugins) 4.数据库(Database)
+
+        如何根据设计稿修改WordPress相关页面?
+        1.创建子主题(Optional) 2.复制模版文件 3.修改模版文件 4.使用自定义样式表
+        5.更新页面内容 6.预览和调整 7.更新主题或保持修改
+
+    </script>
+</body>
+</html>
